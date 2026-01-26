@@ -3,171 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio BTS CIEL - Cyber & IoT</title>
-    
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
+    <title>Portfolio Moamar - BTS CIEL</title>
     <style>
-        /* --- DESIGN CYBERPUNK (CSS) --- */
+        /* --- DESIGN CYBERPUNK / TERMINAL --- */
         :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: #111111;
-            --neon-green: #00ff41;
-            --neon-blue: #00f3ff;
-            --text-main: #e0e0e0;
-            --text-muted: #888;
-            --border: #333;
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --text-color: #c9d1d9;
+            --green: #00ff41;     /* Vert Hacker */
+            --blue: #58a6ff;      /* Bleu Tech */
+            --border: #30363d;
         }
-        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
-        .app-container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
-        
-        /* Glitch Effect */
-        .hero { padding: 5rem 0 3rem; text-align: center; }
-        .glitch-wrapper { display: inline-block; position: relative; }
-        .glitch { font-family: 'Fira Code', monospace; font-size: 3.5rem; font-weight: 700; color: #fff; position: relative; margin: 0; }
-        h2 { font-size: 1.5rem; margin: 0.5rem 0; color: #fff; }
-        .accent-text { color: var(--neon-green); font-family: 'Fira Code', monospace; font-size: 1rem; margin-top: 0; }
-        
-        /* Terminal */
-        .terminal { background: #000; border: 1px solid #333; border-radius: 6px; max-width: 600px; margin: 3rem auto; text-align: left; box-shadow: 0 10px 30px rgba(0, 255, 65, 0.1); font-family: 'Fira Code', monospace; }
-        .terminal-header { background: #1a1a1a; padding: 8px 12px; display: flex; align-items: center; border-bottom: 1px solid #333; }
-        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
-        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
-        .terminal-body { padding: 15px; color: #e0e0e0; font-size: 0.9rem; }
-        .prompt { color: var(--neon-green); margin-right: 8px; }
-        .response { color: var(--neon-blue); margin-bottom: 10px; display: block; }
-        .cursor { animation: blink 1s infinite; background: var(--text-main); color: var(--text-main); }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-        /* Grid & Cards */
-        .section-title { border-left: 4px solid var(--neon-green); padding-left: 1rem; margin-top: 4rem; margin-bottom: 2rem; color: #fff; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .tech-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease; }
-        .tech-card:hover { border-color: var(--neon-green); transform: translateY(-5px); }
-        .tech-card h3 { margin-top: 0; color: var(--neon-green); font-family: 'Fira Code', monospace; }
-        .tech-card ul { padding-left: 1.2rem; color: #ccc; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* En-tête */
+        header {
+            text-align: center;
+            padding: 50px 0;
+            border-bottom: 2px solid var(--border);
+        }
+
+        h1 {
+            color: var(--green);
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: var(--blue);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Boutons Contact (Nouveau) */
+        .contact-bar {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid var(--green);
+            color: var(--green);
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn:hover {
+            background: var(--green);
+            color: #000;
+            box-shadow: 0 0 15px var(--green);
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 40px;
+            padding-top: 20px;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            color: var(--green);
+            border-left: 5px solid var(--green);
+            padding-left: 15px;
+            margin-bottom: 20px;
+        }
         
-        /* Featured Project */
-        .project-card.featured { background: linear-gradient(145deg, #111 0%, #0d160f 100%); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; }
-        .tech-stack span { background: rgba(0, 243, 255, 0.1); color: var(--neon-blue); padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; font-family: 'Fira Code', monospace; margin-right: 10px; }
+        h2::before { content: "root@moamar:~$ "; opacity: 0.5; font-size: 0.8em; }
+
+        /* Grilles & Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 6px;
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            border-color: var(--blue);
+            transform: translateY(-5px);
+        }
         
+        .card h3 { color: var(--blue); margin-top: 0; }
+        
+        .tag {
+            display: inline-block;
+            background: rgba(88, 166, 255, 0.15);
+            color: var(--blue);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+
         /* Timeline */
-        .timeline-item { border-left: 2px solid #333; padding-left: 1.5rem; margin-bottom: 2rem; position: relative; }
-        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--neon-green); border-radius: 50%; }
-        .company { color: var(--neon-green); }
-        .date { font-size: 0.85rem; color: var(--text-muted); font-family: 'Fira Code', monospace; }
+        .timeline-item {
+            border-left: 2px solid var(--border);
+            padding-left: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+        .date { color: #888; font-weight: bold; display: block; margin-bottom: 5px; }
 
-        footer { text-align: center; margin-top: 5rem; padding: 2rem 0; border-top: 1px solid #222; color: #666; font-size: 0.9rem; }
-        a { color: var(--neon-green); text-decoration: none; }
-        
+        /* Langues & Badges */
+        .lang-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+        .lang-item { 
+            background: var(--card-bg); 
+            padding: 10px 20px; 
+            border: 1px solid var(--green); 
+            border-radius: 20px; 
+            color: white;
+        }
+        .badge-list li { margin-bottom: 10px; list-style: none; }
+        .badge-list li::before { content: "🏆 "; }
+
+        /* Footer */
+        footer { text-align: center; color: #666; font-size: 0.9rem; margin-top: 50px; }
+        footer a { color: var(--blue); text-decoration: none; }
+
         /* Responsive */
-        @media (max-width: 600px) { .glitch { font-size: 2.5rem; } }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .contact-bar { flex-direction: column; align-items: stretch; }
+            .btn { text-align: center; justify-content: center; }
+        }
     </style>
 </head>
 <body>
-    <div id="root"></div>
 
-    <script type="text/babel">
-        // --- LOGIQUE REACT ---
-        const { useState, useEffect } = React;
+    <div class="container">
+        <header>
+            <h1>MOAMAR OUSMANAWAT</h1>
+            <p class="subtitle">BTS CIEL - Option A (Informatique & Réseaux)</p>
+            <p>Spécialisation Cybersécurité & IoT</p>
+            
+            <div class="contact-bar">
+                <a href="mailto:moamar.ousmanawat@gmail.com" class="btn">📧 Envoyer un mail</a>
+                <a href="www.linkedin.com/in/moamar-ousman-awat-768173238" class="btn" target="_blank">💼 Mon LinkedIn</a>
 
-        function App() {
-            // -- TES DONNÉES (MODIFIE ICI) --
-            const profil = {
-                nom: "MOAMAR",
-                titre: "Étudiant en BTS CIEL",
-                sousTitre: "Spécialisation Cybersécurité & IoT",
-                github: "https://github.com",
-                linkedin: "https://linkedin.com"
-            };
+            </div>
+        </header>
 
-            const competences = [
-                { categorie: "Réseaux 🌐", skills: ["Cisco (CCNA)", "TCP/IP & OSI", "VLAN / Trunking", "Routage (OSPF)", "Wireshark"] },
-                { categorie: "Systèmes & Cyber 💻", skills: ["Linux (Kali, Debian)", "Windows Server", "Docker", "Bash Scripting", "Firewalling"] },
-                { categorie: "IoT & Électronique 📡", skills: ["ESP32 / Arduino", "MQTT / Mosquitto", "C / C++ Embarqué", "Raspberry Pi", "Capteurs (I2C)"] }
-            ];
+        <section>
+            <h2>Parcours Académique</h2>
+            <div class="timeline-item">
+                <span class="date">2024 - 2026 (En cours)</span>
+                <h3>BTS CIEL option A (IR) - Alternance</h3>
+                <p>Lycée Édouard Branly, Lyon 5</p>
+                <p>Cybersécurité, Informatique et Électronique.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="date">2021 - 2024</span>
+                <h3>Bac Pro SN option C (Réseaux)</h3>
+                <p>Lycée Édouard Branly, Lyon 5</p>
+                <p>Systèmes Numériques, mention Très Bien.</p>
+            </div>
+        </section>
 
-            const experience = [
-                { poste: "Alternant Info & Réseaux", entreprise: "Mairie de Grigny", date: "2023 - Présent", desc: "Gestion du parc, support et maintenance réseau." },
-                { poste: "Stagiaire Technicien", entreprise: "FMI Groupe", date: "2022", desc: "Installation solutions d'impression et réseau." }
-            ];
+        <section>
+            <h2>Projet Phare : Monitoring Environnement</h2>
+            <div class="card" style="border-color: var(--green);">
+                <h3>🌍 Surveillance Multi-Salles IoT</h3>
+                <p>Système complet de surveillance de la qualité de l'air et température pour deux salles critiques.</p>
+                
+                <ul>
+                    <li><strong>Salle Informatique :</strong> Utilisation d'un <em>Wio Terminal</em> pour capter la température et l'humidité.</li>
+                    <li><strong>Salle Archives :</strong> Utilisation d'un <em>ESP32</em> avec capteur de qualité d'air.</li>
+                    <li><strong>Infrastructure :</strong>
+                        <ul>
+                            <li>Broker MQTT hébergé sur Docker (Raspberry Pi local).</li>
+                            <li>Affichage temps réel sur écrans LCD et Dashboard Web.</li>
+                        </ul>
+                    </li>
+                </ul>
 
-            return (
-                <div className="app-container">
-                    {/* Hero */}
-                    <header className="hero">
-                        <div className="glitch-wrapper">
-                            <h1 className="glitch">{profil.nom}</h1>
-                        </div>
-                        <h2>{profil.titre}</h2>
-                        <h3 className="accent-text">{profil.sousTitre}</h3>
-                        
-                        <div className="terminal">
-                            <div className="terminal-header">
-                                <span className="dot red"></span><span className="dot yellow"></span><span className="dot green"></span>
-                            </div>
-                            <div className="terminal-body">
-                                <p><span className="prompt">moamar@lyon:~$</span> whoami</p>
-                                <p className="response">Future Cybersecurity Expert</p>
-                                <p><span className="prompt">moamar@lyon:~$</span> <span className="cursor">_</span></p>
-                            </div>
-                        </div>
-                    </header>
-
-                    <main>
-                        {/* Compétences */}
-                        <section className="section-container">
-                            <h2 className="section-title">🔧 Arsenal Technique</h2>
-                            <div className="grid-3">
-                                {competences.map((cat, index) => (
-                                    <div key={index} className="tech-card">
-                                        <h3>{cat.categorie}</h3>
-                                        <ul>{cat.skills.map((s, i) => <li key={i}>{s}</li>)}</ul>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-
-                        {/* Projet */}
-                        <section className="section-container">
-                            <h2 className="section-title">🚀 Projet Phare</h2>
-                            <div className="project-card featured">
-                                <h3>Système de Monitoring Environnemental</h3>
-                                <p style={{lineHeight: 1.6}}>Surveillance qualité de l'air (Archives) via ESP32 & SHT40. Remontée MQTT vers Docker.</p>
-                                <div className="tech-stack">
-                                    <span>ESP32</span><span>MQTT</span><span>Docker</span><span>C++</span>
-                                </div>
-                            </div>
-                        </section>
-
-                        {/* Expérience */}
-                        <section className="section-container">
-                            <h2 className="section-title">💼 Parcours</h2>
-                            <div className="timeline">
-                                {experience.map((exp, idx) => (
-                                    <div key={idx} className="timeline-item">
-                                        <h4>{exp.poste} @ <span className="company">{exp.entreprise}</span></h4>
-                                        <span className="date">{exp.date}</span>
-                                        <p>{exp.desc}</p>
-                                    </div>
-                                ))}
-                            </div>
-                        </section>
-                    </main>
-
-                    <footer>
-                        <p>© 2024 {profil.nom}. <a href={profil.linkedin}>LinkedIn</a> • <a href={profil.github}>GitHub</a></p>
-                    </footer>
+                <div style="margin-top: 15px;">
+                    <span class="tag">ESP32</span>
+                    <span class="tag">Wio Terminal</span>
+                    <span class="tag">MQTT</span>
+                    <span class="tag">Docker</span>
+                    <span class="tag">Raspberry Pi</span>
                 </div>
-            );
-        }
+            </div>
+        </section>
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
+        <section>
+            <h2>Certifications & Badges</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>🛡️ Cybersécurité</h3>
+                    <ul class="badge-list" style="padding-left: 0;">
+                        <li>Advent of Cyber 2025 (TryHackMe)</li>
+                        <li>Introduction to Cybersecurity (Cisco)</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>🌐 Réseaux & Code</h3>
+                    <ul class="badge-list" style="padding-left: 0;">
+                        <li>CCNA: Introduction to Networks</li>
+                        <li>Introduction to IoT</li>
+                        <li>C++ Essentials 1</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Langues Parlées</h2>
+            <div class="lang-grid">
+                <div class="lang-item">🇫🇷 Français (Courant)</div>
+                <div class="lang-item">🇸🇦 Arabe (Courant)</div>
+                <div class="lang-item">🇬🇧 Anglais (Technique)</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Connexion terminée.</p>
+            <p style="font-size: 0.8rem; opacity: 0.7;">moamar.ousmanawat@gmail.com</p>
+        </footer>
+    </div>
+
 </body>
 </html>
