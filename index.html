@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Moamar L</title>
+    <title>Portfolio Moamar - Expert Cyber & Réseaux</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+    
     <style>
         /* --- DESIGN CYBERPUNK / TERMINAL --- */
         :root {
@@ -49,12 +51,18 @@
             color: var(--blue);
             font-weight: bold;
             font-size: 1.2rem;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .role-desc {
+            color: #8b949e;
+            font-size: 1rem;
+            margin-bottom: 25px;
+            font-style: italic;
         }
 
-        /* Boutons Contact (Nouveau) */
+        /* Boutons Contact */
         .contact-bar {
-            margin-top: 25px;
             display: flex;
             justify-content: center;
             gap: 15px;
@@ -72,12 +80,24 @@
             transition: all 0.3s;
             display: inline-flex;
             align-items: center;
+            cursor: pointer;
         }
 
         .btn:hover {
             background: var(--green);
             color: #000;
             box-shadow: 0 0 15px var(--green);
+        }
+        
+        /* Bouton Spécial CV */
+        .btn-cv {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+        .btn-cv:hover {
+            background: var(--blue);
+            color: #000;
+            box-shadow: 0 0 15px var(--blue);
         }
 
         /* Sections */
@@ -96,6 +116,15 @@
         }
         
         h2::before { content: "root@moamar:~$ "; opacity: 0.5; font-size: 0.8em; }
+
+        /* Texte présentation */
+        .bio-text {
+            font-size: 1.05rem;
+            text-align: justify;
+            border-left: 1px solid var(--border);
+            padding-left: 20px;
+            margin-left: 5px;
+        }
 
         /* Grilles & Cards */
         .grid {
@@ -176,16 +205,29 @@
 
     <div class="container">
         <header>
-            <h1>MOAMAR OUSMAN AWAT</h1>
+            <h1>MOAMAR OUSMANAWAT</h1>
             <p class="subtitle">BTS CIEL - Option A (Informatique & Réseaux)</p>
-            <p>Spécialisation Cybersécurité & Informatique et Reséaux</p>
+            <p class="role-desc">Administration Système & Sécurité des Infrastructures</p>
             
             <div class="contact-bar">
-                <a href="mailto:moamar.ousmanawat@gmail.com" class="btn">📧 Envoyer un mail</a>
-                <a href="https://www.linkedin.com/in/moamar-ousman-awat-768173238" class="btn" target="_blank">💼 Mon LinkedIn</a>
-
+                <a href="mailto:moamar.ousmanawat@gmail.com" class="btn">📧 Me contacter</a>
+                <a href="https://www.linkedin.com/in/moamar-ousman-awat-768173238" class="btn" target="_blank">💼 LinkedIn</a>
+                <a href="https://github.com/moamar-ousmanawat" class="btn" target="_blank">💻 GitHub</a>
+                <a href="#" class="btn btn-cv" target="_blank">📄 Télécharger CV</a>
             </div>
         </header>
+
+        <section>
+            <h2>À Propos de moi</h2>
+            <div class="bio-text">
+                <p>
+                    Étudiant passionné en <strong>BTS CIEL (Cybersécurité, Informatique et Électronique)</strong>, je me spécialise dans l'administration des réseaux et la sécurisation des infrastructures numériques.
+                </p>
+                <p>
+                    Actuellement en alternance, je combine mes apprentissages théoriques avec une pratique concrète sur le terrain. Curieux et rigoureux, je m'investis activement dans la veille technologique, l'apprentissage de nouveaux protocoles et la participation à des challenges de sécurité (CTF). Mon objectif : devenir un expert capable de concevoir et protéger les réseaux de demain.
+                </p>
+            </div>
+        </section>
 
         <section>
             <h2>Parcours Académique</h2>
@@ -193,29 +235,30 @@
                 <span class="date">2024 - 2026 (En cours)</span>
                 <h3>BTS CIEL option A (IR) - Alternance</h3>
                 <p>Lycée Édouard Branly, Lyon 5</p>
-                <p>Cybersécurité, Informatique et Reséaux.</p>
+                <p>Approfondissement en administration système, routage avancé et cybersécurité.</p>
             </div>
             <div class="timeline-item">
                 <span class="date">2021 - 2024</span>
-                <h3>Bac Pro Systèmes Numériques option C RISC (Réseaux)</h3>
+                <h3>Bac Pro SN option C (Réseaux)</h3>
                 <p>Lycée Édouard Branly, Lyon 5</p>
-                <p>Reséaux Informatiques Et Systemes Communicants.</p>
+                <p>Mention Très Bien. Bases solides en configuration réseau (Switching/Routing) et systèmes communicants.</p>
             </div>
         </section>
 
         <section>
             <h2>Projet Phare : Monitoring Environnement</h2>
             <div class="card" style="border-color: var(--green);">
-                <h3>🌍 Surveillance Multi-Salles IoT</h3>
-                <p>Système complet de surveillance de la qualité de l'air et température pour deux salles critiques.</p>
+                <h3>🌍 Surveillance Multi-Salles Connectée</h3>
+                <p>Système complet de surveillance de la qualité de l'air et température pour deux zones critiques.</p>
                 
                 <ul>
-                    <li><strong>Salle Informatique :</strong> Utilisation d'un <em>Wio Terminal</em> pour capter la température et l'humidité.</li>
-                    <li><strong>Salle Archives :</strong> Utilisation d'un <em>ESP32</em> avec capteur de qualité d'air.</li>
-                    <li><strong>Infrastructure :</strong>
+                    <li><strong>Salle Informatique :</strong> Surveillance T°/Humidité via <em>Wio Terminal</em>.</li>
+                    <li><strong>Salle Archives :</strong> Analyse qualité d'air via <em>ESP32</em>.</li>
+                    <li><strong>Architecture Réseau :</strong>
                         <ul>
-                            <li>Broker MQTT hébergé sur Docker (Raspberry Pi local).</li>
-                            <li>Affichage temps réel sur écrans LCD et Dashboard Web.</li>
+                            <li>Transmission des données via protocole MQTT.</li>
+                            <li>Serveur centralisé sur Docker (Raspberry Pi).</li>
+                            <li>Visualisation temps réel sur Dashboard Web.</li>
                         </ul>
                     </li>
                 </ul>
@@ -225,7 +268,7 @@
                     <span class="tag">Wio Terminal</span>
                     <span class="tag">MQTT</span>
                     <span class="tag">Docker</span>
-                    <span class="tag">Raspberry Pi</span>
+                    <span class="tag">Réseaux IoT</span>
                 </div>
             </div>
         </section>
@@ -261,7 +304,7 @@
         </section>
 
         <footer>
-            <p>Connexion terminée.</p>
+            <p>Session active. root@moamar</p>
             <p style="font-size: 0.8rem; opacity: 0.7;">moamar.ousmanawat@gmail.com</p>
         </footer>
     </div>
