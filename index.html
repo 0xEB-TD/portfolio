@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio BTS CIEL - Cyber & IoT</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- DESIGN CYBERPUNK (CSS) --- */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #111111;
+            --neon-green: #00ff41;
+            --neon-blue: #00f3ff;
+            --text-main: #e0e0e0;
+            --text-muted: #888;
+            --border: #333;
+        }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        .app-container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* Glitch Effect */
+        .hero { padding: 5rem 0 3rem; text-align: center; }
+        .glitch-wrapper { display: inline-block; position: relative; }
+        .glitch { font-family: 'Fira Code', monospace; font-size: 3.5rem; font-weight: 700; color: #fff; position: relative; margin: 0; }
+        h2 { font-size: 1.5rem; margin: 0.5rem 0; color: #fff; }
+        .accent-text { color: var(--neon-green); font-family: 'Fira Code', monospace; font-size: 1rem; margin-top: 0; }
+        
+        /* Terminal */
+        .terminal { background: #000; border: 1px solid #333; border-radius: 6px; max-width: 600px; margin: 3rem auto; text-align: left; box-shadow: 0 10px 30px rgba(0, 255, 65, 0.1); font-family: 'Fira Code', monospace; }
+        .terminal-header { background: #1a1a1a; padding: 8px 12px; display: flex; align-items: center; border-bottom: 1px solid #333; }
+        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+        .terminal-body { padding: 15px; color: #e0e0e0; font-size: 0.9rem; }
+        .prompt { color: var(--neon-green); margin-right: 8px; }
+        .response { color: var(--neon-blue); margin-bottom: 10px; display: block; }
+        .cursor { animation: blink 1s infinite; background: var(--text-main); color: var(--text-main); }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* Grid & Cards */
+        .section-title { border-left: 4px solid var(--neon-green); padding-left: 1rem; margin-top: 4rem; margin-bottom: 2rem; color: #fff; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .tech-card { background: var(--bg-card); border: 1px solid var(--border); padding: 1.5rem; border-radius: 8px; transition: all 0.3s ease; }
+        .tech-card:hover { border-color: var(--neon-green); transform: translateY(-5px); }
+        .tech-card h3 { margin-top: 0; color: var(--neon-green); font-family: 'Fira Code', monospace; }
+        .tech-card ul { padding-left: 1.2rem; color: #ccc; }
+        
+        /* Featured Project */
+        .project-card.featured { background: linear-gradient(145deg, #111 0%, #0d160f 100%); border: 1px solid var(--border); border-radius: 12px; padding: 2rem; }
+        .tech-stack span { background: rgba(0, 243, 255, 0.1); color: var(--neon-blue); padding: 4px 10px; border-radius: 4px; font-size: 0.85rem; font-family: 'Fira Code', monospace; margin-right: 10px; }
+        
+        /* Timeline */
+        .timeline-item { border-left: 2px solid #333; padding-left: 1.5rem; margin-bottom: 2rem; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--neon-green); border-radius: 50%; }
+        .company { color: var(--neon-green); }
+        .date { font-size: 0.85rem; color: var(--text-muted); font-family: 'Fira Code', monospace; }
+
+        footer { text-align: center; margin-top: 5rem; padding: 2rem 0; border-top: 1px solid #222; color: #666; font-size: 0.9rem; }
+        a { color: var(--neon-green); text-decoration: none; }
+        
+        /* Responsive */
+        @media (max-width: 600px) { .glitch { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // --- LOGIQUE REACT ---
+        const { useState, useEffect } = React;
+
+        function App() {
+            // -- TES DONNÉES (MODIFIE ICI) --
+            const profil = {
+                nom: "MOAMAR",
+                titre: "Étudiant en BTS CIEL",
+                sousTitre: "Spécialisation Cybersécurité & IoT",
+                github: "https://github.com",
+                linkedin: "https://linkedin.com"
+            };
+
+            const competences = [
+                { categorie: "Réseaux 🌐", skills: ["Cisco (CCNA)", "TCP/IP & OSI", "VLAN / Trunking", "Routage (OSPF)", "Wireshark"] },
+                { categorie: "Systèmes & Cyber 💻", skills: ["Linux (Kali, Debian)", "Windows Server", "Docker", "Bash Scripting", "Firewalling"] },
+                { categorie: "IoT & Électronique 📡", skills: ["ESP32 / Arduino", "MQTT / Mosquitto", "C / C++ Embarqué", "Raspberry Pi", "Capteurs (I2C)"] }
+            ];
+
+            const experience = [
+                { poste: "Alternant Info & Réseaux", entreprise: "Mairie de Grigny", date: "2023 - Présent", desc: "Gestion du parc, support et maintenance réseau." },
+                { poste: "Stagiaire Technicien", entreprise: "FMI Groupe", date: "2022", desc: "Installation solutions d'impression et réseau." }
+            ];
+
+            return (
+                <div className="app-container">
+                    {/* Hero */}
+                    <header className="hero">
+                        <div className="glitch-wrapper">
+                            <h1 className="glitch">{profil.nom}</h1>
+                        </div>
+                        <h2>{profil.titre}</h2>
+                        <h3 className="accent-text">{profil.sousTitre}</h3>
+                        
+                        <div className="terminal">
+                            <div className="terminal-header">
+                                <span className="dot red"></span><span className="dot yellow"></span><span className="dot green"></span>
+                            </div>
+                            <div className="terminal-body">
+                                <p><span className="prompt">moamar@lyon:~$</span> whoami</p>
+                                <p className="response">Future Cybersecurity Expert</p>
+                                <p><span className="prompt">moamar@lyon:~$</span> <span className="cursor">_</span></p>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main>
+                        {/* Compétences */}
+                        <section className="section-container">
+                            <h2 className="section-title">🔧 Arsenal Technique</h2>
+                            <div className="grid-3">
+                                {competences.map((cat, index) => (
+                                    <div key={index} className="tech-card">
+                                        <h3>{cat.categorie}</h3>
+                                        <ul>{cat.skills.map((s, i) => <li key={i}>{s}</li>)}</ul>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Projet */}
+                        <section className="section-container">
+                            <h2 className="section-title">🚀 Projet Phare</h2>
+                            <div className="project-card featured">
+                                <h3>Système de Monitoring Environnemental</h3>
+                                <p style={{lineHeight: 1.6}}>Surveillance qualité de l'air (Archives) via ESP32 & SHT40. Remontée MQTT vers Docker.</p>
+                                <div className="tech-stack">
+                                    <span>ESP32</span><span>MQTT</span><span>Docker</span><span>C++</span>
+                                </div>
+                            </div>
+                        </section>
+
+                        {/* Expérience */}
+                        <section className="section-container">
+                            <h2 className="section-title">💼 Parcours</h2>
+                            <div className="timeline">
+                                {experience.map((exp, idx) => (
+                                    <div key={idx} className="timeline-item">
+                                        <h4>{exp.poste} @ <span className="company">{exp.entreprise}</span></h4>
+                                        <span className="date">{exp.date}</span>
+                                        <p>{exp.desc}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    </main>
+
+                    <footer>
+                        <p>© 2024 {profil.nom}. <a href={profil.linkedin}>LinkedIn</a> • <a href={profil.github}>GitHub</a></p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
